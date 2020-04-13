@@ -49,3 +49,102 @@ The conversion table for months is already in the starting code.
 
 source: https://edabit.com/challenge/Pa2rHJ6KeRBTF28Pg
  */
+const months = {
+  1: 'A',
+  2: 'B',
+  3: 'C',
+  4: 'D',
+  5: 'E',
+  6: 'H',
+  7: 'L',
+  8: 'M',
+  9: 'P',
+  10: 'R',
+  11: 'S',
+  12: 'T',
+}
+
+const getSurNameChars = (surname) => {
+  if (surname.length < 3) {
+    return surname.toUpperCase() + 'X'.repeat(3 - surname.length)
+  } else {
+    let vowels = ''
+    const chars = surname.split('').reduce((acc, val) => {
+      if (/[^aeiou]/.test(val.toLowerCase())) {
+        return acc + val.toUpperCase()
+      }
+      vowels += val.toUpperCase()
+      return acc
+    }, '')
+
+    if (chars.length >= 3) {
+      return chars.substring(0, 3)
+    }
+    return chars + vowels.substring(0, 3 - chars.length)
+  }
+}
+const getNameChars = (name) => {
+  const consonants = name.replace(/[aeiou]/g, '')
+  if (consonants.length === 3) {
+    return consonants.toUpperCase()
+  } else if (consonants.length > 3) {
+    return consonants.substring(0, 1).toUpperCase() + consonants.substring(2, 4).toUpperCase()
+  }
+  return getSurNameChars(name)
+}
+const getDobAndGender = (dob, gender) => {
+  const parts = dob.split('/')
+  const mm = parts[1]
+  const yy = parts[2].slice(-2)
+  const dd = gender === 'M' ? parts[0] : parseInt(parts[0]) + 40
+  const last = dd.length < 2 ? `0${dd}` : dd
+
+  return yy + months[mm] + last
+}
+
+/**
+ * @param {Object} prop
+ * @param {String} prop.name
+ * @param {String} prop.surname
+ * @param {String} prop.gender
+ * @param {String} prop.dob
+ */
+const fiscalCode = ({ name, surname, gender, dob }) => {
+  const section1 = getSurNameChars(surname)
+  const section2 = getNameChars(name)
+  const section3 = getDobAndGender(dob, gender)
+  return section1 + section2 + section3
+}
+
+describe('A Captial Challenge code-test', () => {
+  it('should handle Matt Edabit', () => {
+    expect(
+      fiscalCode({
+        name: 'Matt',
+        surname: 'Edabit',
+        gender: 'M',
+        dob: '1/1/1900',
+      })
+    ).toBe('DBTMTT00A01')
+  })
+  it('should handle Helen Yu', () => {
+    expect(
+      fiscalCode({
+        name: 'Helen',
+        surname: 'Yu',
+        gender: 'F',
+        dob: '1/12/1950',
+      })
+    ).toBe('YUXHLN50T41')
+  })
+  it('should handle Mickey Mouse', () => {
+    expect(
+      fiscalCode({
+        name: 'Mickey',
+        surname: 'Mouse',
+        gender: 'M',
+        dob: '16/1/1928',
+      })
+    ).toBe('MSOMKY28A16')
+  })
+})
