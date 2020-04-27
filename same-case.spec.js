@@ -13,11 +13,6 @@ Source: https://edabit.com/challenge/ivaEWKZbFMcR8emJ8
  * @param {String} word
  */
 const sameCase = (word) => {
-  // const score = word.reduce((acc, v) => {
-  //   const num = v.toUpperCase() === v ? 1 : 0
-  //   return acc + num
-  // })
-
   let score = 0
   for (let i = 0; i < word.length; i++) {
     const v = word.charAt(i)
