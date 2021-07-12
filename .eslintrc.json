@@ -1,0 +1,3 @@
+{
+  "extends": ["@cx/eslint-config"]
+}
