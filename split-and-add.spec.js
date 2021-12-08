@@ -80,6 +80,9 @@ function crack(sha, scramble) {
   return cracked
 }
 
+
+
+
 describe('A reverse-binary challenge', () => {
   it('should work for case 1', () => {
     expect(

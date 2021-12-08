@@ -24,35 +24,36 @@ source: https://www.codewars.com/kata/5d50e3914861a500121e1958/javascript
  *
  * @param {String} code
  */
+
 function addLetters(...letters) {
   if (letters.length > 0) {
     const val = letters.reduce((acc, char) => {
-      acc += char.charCodeAt(0) - '`'.charCodeAt(0)
-      return acc
-    }, 0)
-    const charCode = '`'.charCodeAt(0) + (val > 26 ? val % 26 : val)
-    return String.fromCharCode(charCode)
+      acc += char.charCodeAt(0) - "`".charCodeAt(0);
+      return acc;
+    }, 0);
+    const charCode = "`".charCodeAt(0) + (val > 26 ? val % 26 : val);
+    return String.fromCharCode(charCode);
   }
-  return 'z'
+  return "z";
 }
 
-describe('A reverse-binary challenge', () => {
-  it('should work for case 1', () => {
-    expect(addLetters('a', 'b', 'c')).toEqual('f')
-  })
-  it('should work for case 2', () => {
-    expect(addLetters('a', 'b')).toEqual('c')
-  })
-  it('should work for case 3', () => {
-    expect(addLetters('z')).toEqual('z')
-  })
-  it('should work for case 4', () => {
-    expect(addLetters('z', 'a')).toEqual('a')
-  })
-  it('should work for case 5', () => {
-    expect(addLetters('y', 'c', 'b')).toEqual('d')
-  })
-  it('should work for case 6', () => {
-    expect(addLetters()).toEqual('z')
-  })
-})
+describe("A reverse-binary challenge", () => {
+  it("should work for case 1", () => {
+    expect(addLetters("a", "b", "c")).toEqual("f");
+  });
+  it("should work for case 2", () => {
+    expect(addLetters("a", "b")).toEqual("c");
+  });
+  it("should work for case 3", () => {
+    expect(addLetters("z")).toEqual("z");
+  });
+  it("should work for case 4", () => {
+    expect(addLetters("z", "a")).toEqual("a");
+  });
+  it("should work for case 5", () => {
+    expect(addLetters("y", "c", "b")).toEqual("d");
+  });
+  it("should work for case 6", () => {
+    expect(addLetters()).toEqual("z");
+  });
+});

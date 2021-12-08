@@ -10,13 +10,13 @@ Given a string with any number of open/closed parenthesis, return true if the pa
  *
  * @param {String} str
  */
-const isBalanced = str => {
-  const buckets = str.split('').reduce((acc, curr) => {
-    return { ...acc, [curr]: (acc[curr] || 0) + 1 }
-  }, {})
-  return buckets['('] === buckets[')']
-}
+const isBalanced = (str) => {
+  const buckets = str.split("").reduce((acc, curr) => {
+    return { ...acc, [curr]: (acc[curr] || 0) + 1 };
+  }, {});
+  return buckets["("] === buckets[")"];
+};
 
-const test = isBalanced('(x+2)*(x-4)')
+const test = isBalanced("(x+2)*(x-4)");
 
-console.log(test)
+console.log(test);
