@@ -18,7 +18,6 @@ mod tests {
 }
 // source: https://www.codewars.com/kata/56eff1e64794404a720002d2/train/rust
 */
-use regex::Regex;
 
 fn testit(sample_string: &str) -> i8 {
   let lower_word = sample_string.to_ascii_lowercase();
